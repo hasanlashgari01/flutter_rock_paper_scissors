@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(Application());
+  runApp(GameApplication());
 }
 
-class Application extends StatelessWidget {
-  const Application({super.key});
+class GameApplication extends StatefulWidget {
+  const GameApplication({super.key});
 
+  @override
+  State<GameApplication> createState() => _GameApplicationState();
+}
+
+class _GameApplicationState extends State<GameApplication> {
+  int top = 1;
+  int bottom = 1;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,16 +31,21 @@ class Application extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Image(image: AssetImage("images/1.png")),
+                Image(image: AssetImage("images/$top.png")),
                 TextButton(
                   style: TextButton.styleFrom(foregroundColor: Colors.white),
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      top = 3;
+                      bottom = 1;
+                    });
+                  },
                   child: Text(
                     'شروع بازی',
                     style: TextStyle(fontSize: 32),
                   ),
                 ),
-                Image(image: AssetImage("images/2.png")),
+                Image(image: AssetImage("images/$bottom.png")),
               ],
             ),
           ),
