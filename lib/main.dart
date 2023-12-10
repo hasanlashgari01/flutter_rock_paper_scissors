@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(GameApplication());
@@ -27,27 +28,30 @@ class _GameApplicationState extends State<GameApplication> {
         ),
         backgroundColor: Colors.indigoAccent,
         body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Image(image: AssetImage("images/$top.png")),
-                TextButton(
-                  style: TextButton.styleFrom(foregroundColor: Colors.white),
-                  onPressed: () {
-                    setState(() {
-                      top = 3;
-                      bottom = 1;
-                    });
-                  },
-                  child: Text(
-                    'شروع بازی',
-                    style: TextStyle(fontSize: 32),
-                  ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Image(
+                image: AssetImage("images/$top.png"),
+                height: 100.0,
+              ),
+              TextButton(
+                style: TextButton.styleFrom(foregroundColor: Colors.white),
+                onPressed: () => setState(() {
+                  top = Random().nextInt(3) + 1;
+                  bottom = Random().nextInt(3) + 1;
+                }),
+                child: Text(
+                  'شروع بازی',
+                  style: TextStyle(fontSize: 32),
                 ),
-                Image(image: AssetImage("images/$bottom.png")),
-              ],
-            ),
+              ),
+              Image(
+                image: AssetImage("images/$bottom.png"),
+                height: 100.0,
+              ),
+            ],
           ),
         ),
       ),
